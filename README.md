@@ -77,7 +77,7 @@ python3 Mainframe/run.py --cfg YAML/BMP.yaml\
 
 if you want to train or test our *Enhanced - Motion Perceiver (En-MP)* model, please remember to set MODEL.MODEL_NAME to En_MP in the [YAML](YAML/BMP.yaml) file.
 
-Our pretrained MP model on RGB videos of BMP dataset is available at [link](https://drive.google.com/file/d/1bxRu81lND-IkicwaNkVMDfVHNj-qFnxV/view?usp=sharing). Our pretrained En-MP model on RGB videos of BMP dataset is available at [link]([https://drive.google.com/file/d/1bxRu81lND-IkicwaNkVMDfVHNj-qFnxV/view?usp=sharing](https://drive.google.com/file/d/1Ty-ytZsFUKGTb1pNME0jb_aI-X6ZuB0o/view?usp=sharing)).
+Our pretrained MP model on RGB videos of BMP dataset is available at [link](https://drive.google.com/file/d/1bxRu81lND-IkicwaNkVMDfVHNj-qFnxV/view?usp=sharing). Our pretrained En-MP model on RGB videos of BMP dataset is available at [link](https://drive.google.com/file/d/1Ty-ytZsFUKGTb1pNME0jb_aI-X6ZuB0o/view?usp=sharing).
 You can download the checkpoint and configure its path to TEST.CHECKPOINT_FILE_PATH for inference.
 
 ## Citation
