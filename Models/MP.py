@@ -222,7 +222,7 @@ class MP(nn.Module):
                 flow_features_total = torch.cat((flow_features_total,flow_features_i),dim=1) 
            
         ##########################################################################
-        # Flow Snapshot Feature Fusion and calssfication
+        # Flow Snapshot Feature Fusion and classification
         ##########################################################################     
         fused_flow_features_x_slots = self.flow_combination_x_slots(flow_features_total).mean(dim=1)  
         fused_flow_features_x_slots = fused_flow_features_x_slots.view(B,T,-1) 
@@ -239,7 +239,7 @@ class MP(nn.Module):
         tokens_motion_map = self.motion_invar(attn_tokens.view(B,T,H_t*W_t,-1),tau=0.001)
         
         ##########################################################################
-        # Motion Ivariance Feature Fusion and calssfication
+        # Motion Ivariance Feature Fusion and classification
         ##########################################################################  
         motion_invar_features = self.invar_proj(tokens_motion_map) 
         fused_motion_invar_features_x_axes = self.invar_combination_x_axes(motion_invar_features.view(B*T,4,-1)).mean(dim=1) 
@@ -249,7 +249,7 @@ class MP(nn.Module):
         aux_loss += self.CELoss(invar_logit,labels)
 
         ##########################################################################
-        # Two Branches Fusion and calssfication
+        # Two Branches Fusion and classification
         ##########################################################################  
         all_features = torch.cat((fused_flow_features,fused_motion_invar_features),dim=-1) 
         logit = self.all_head(all_features)
