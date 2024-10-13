@@ -1,0 +1,75 @@
+TRAIN:
+  ENABLE: True
+  DATASET: bmp 
+  BATCH_SIZE: 48
+  CHECKPOINT_PERIOD: 5
+  PRETRAIN_DATASET: none 
+  MIXED_PRECISION: True 
+  SPLIT: train_RGB 
+  FFCV:
+    ENABLE: True 
+    DATAPATH_PREFIX: "The datapath prefix for beton files used in FFCV training."
+VAL:
+  ENABLE: True 
+  BATCH_SIZE: 48
+  SPLIT: test_RGB
+  NUM_ENSEMBLE_VIEWS: 1
+  NUM_SPATIAL_CROPS: 1
+  EVAL_PERIOD: 5
+  FFCV:
+    ENABLE: True
+    DATAPATH_PREFIX: "The datapath prefix for beton files used in FFCV validation."
+SOLVER:
+  BASE_LR: 1e-4
+  LR_POLICY: cosine
+  MAX_EPOCH: 50 
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 1e-4 
+  WARMUP_EPOCHS: 0.0
+  WARMUP_START_LR: 0.001
+  OPTIMIZING_METHOD: adamw 
+  CLIP_GRAD_L2NORM: 1.0
+MODEL:
+  MODEL_NAME: MP
+  LOSS_FUNC: cross_entropy 
+  NUM_CLASSES: 10
+MYMODEL:
+  BACKBONE: 'dino_vitb16'
+  NUM_FRAMES_LIST: [32,16,8,4]
+  TEMPORAL_CORR_TEMP: 0.05
+  TEMPORAL_SLOT:
+    NUM_HEAD: 1
+    NUM_ITER: 3
+    NUM_SLOTS: [6,6,6,6]
+    INPUT_CHANNEL: [62,30,14,6]
+    SLOT_SIZE: [62,30,14,6]
+    MLP_HIDDEN_SIZE: [62,30,14,6]
+TEST:
+  ENABLE: True
+  NUM_ENSEMBLE_VIEWS: 1
+  NUM_SPATIAL_CROPS: 1
+  BATCH_SIZE: 120
+  SPLIT: test_6JOINTS
+  CHECKPOINT_FILE_PATH: "Test checkpoint path."
+  FFCV:  
+    ENABLE: True
+    DATAPATH_PREFIX: "The datapath prefix for beton files used in FFCV testing."
+TENSORBOARD:
+  ENABLE: False 
+DATA_LOADER:
+  NUM_WORKERS: 48 
+  OS_CACHE: False 
+DATA:
+  PATH_LABEL_SEPARATOR: ","
+  CROP_SIZE: 224
+  RESIZE_SCALE_WIDTH: 398
+  RESIZE_SCALE_HEIGHT: 224
+  MEAN: [0.485, 0.456, 0.406]
+  STD: [0.229, 0.224, 0.225]
+  RANDOM_FLIP: True     
+  NUM_FRAMES: 32
+DDP_CKPT: False
+NUM_GPUS: 1
+NUM_SHARDS: 1 
+RNG_SEED: 42 
+OUTPUT_DIR: "Path of your output folder"
