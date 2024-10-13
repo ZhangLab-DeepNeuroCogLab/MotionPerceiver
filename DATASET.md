@@ -1,5 +1,7 @@
 # Biological Motion Perception (BMP) dataset
 
+Example videos in the BMP dataset are available at [link](https://drive.google.com/file/d/1kegtLUB7UrIUQwOFLO_qM0O6_vOXa1W6/view?usp=sharing).
+
 # Three Types of Visual Stimuli
 
 ## RGB Videos 
