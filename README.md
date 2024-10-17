@@ -107,6 +107,16 @@ You can download the checkpoint and configure its path to TEST.CHECKPOINT_FILE_P
 
 We have conducted a series of Mechanical Turk experiments using the [Psiturk](https://psiturk.org/) platform, which requires JavaScript, HTML, and Python 2.7. Please refer to [Put-In-Context](https://github.com/kreimanlab/Put-In-Context) and [doc](https://drive.google.com/open?id=1FblDG7OuWXVRfWo0Djb5eDiYgKqnk9wU) for detailed Psiturk instructions.
 
+You can find the code for the human psychophysics experiments at the [\Psiturk](\Psiturk).
+The important files or folders are described in detail below:
+- instructions/instruct-examples.html: instructions for human subjects.
+- instructions/stage.html: HTML configuration for each video stimulus.
+- static/js/task.js: Main file for stimulus loading and running the experiment.
+- config.txt: Configuration of the Human Psychophysics Experiment
+
+
+Data from all participants in our human psychophysics experiments are available at the [link](https://drive.google.com/file/d/1yKd_c3doqQo0IKizYRYuf5FhpllYqjdU/view?usp=sharing), and data from those who passed our dummy trials are accessible through this [link](https://drive.google.com/file/d/1aPMQyHYHDbl0saIqkFUP6_85R3lBQNGx/view?usp=sharing).
+
 ## Citation
 
 If you find our work useful in your research, please use the following BibTeX entry for citation.
