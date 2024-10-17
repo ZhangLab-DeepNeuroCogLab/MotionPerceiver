@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+	.radio-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 40vh;
+	}
+
+	.radio-column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.radio-column:not(:last-child) {
+		margin-right: 100px; 
+	}
+	.radio-item {
+		margin-bottom: 10px; 
+	}
+
+    .highlight-box {
+        display: inline-block;
+        border: 2px solid red;
+        padding: 10px;
+    }
+    
+    .text-with-arrow1 {
+        font-size: 15px;         
+        font-weight: bold; 
+        color: red;      
+        position: absolute;
+        top: 118px;
+        left: 250px;
+        transform: translate(-50%, -50%); 
+    }
+
+    .text-with-arrow2 {
+        font-size: 15px;         
+        font-weight: bold; 
+        color: red;      
+        position: absolute;
+        top: 248px;
+        left: 135px;
+        transform: translate(-50%, -50%);
+    }
+
+    .text-with-arrow3 {
+        font-size: 15px;         
+        font-weight: bold; 
+        color: red;      
+        position: absolute;
+        top: 422px;
+        left: 380px;
+        transform: translate(-50%, -50%); 
+        text-align: left;
+    }
+
+    .question {
+        font-size: 30px;  
+		font-style: bold
+    }
+</style>
+<div id="container-exp">
+	<div id="trial">
+		<p class="question">What is the action in this video?</p>
+		<div id="stim"></div>
+      
+		<input type="button" value="Ready for watching the video." id="startButton">
+       
+        <span id="text-with-arrow1" class="text-with-arrow1"> 1.Start the video when you are ready &rarr;</span>
+          
+        <span id="text-with-arrow2" class="text-with-arrow2"> 2.Select one of the 10 options &rarr;</span>
+        <span id="text-with-arrow3" class="text-with-arrow3"> 3.Proceed to next video &rarr;</span>
+
+        <div class="radio-container">
+            <div class="radio-column">
+                <span class="radio-item">
+                    <input type="radio" name="option" id=0>
+                    <label for=0>pick up</label>
+                </span>
+    
+                <span class="radio-item">
+                    <input type="radio" name="option" id=1>
+                    <label for=2>throw</label>
+                </span>
+    
+                <span class="radio-item">
+                    <input type="radio" name="option" id=2>
+                    <label for=4>sit down</label>
+                </span>
+
+                <span class="radio-item">
+                    <input type="radio" name="option" id=3>
+                    <label for=6>stand up</label>
+                </span>
+
+                <span class="radio-item">
+                    <input type="radio" name="option" id=4>
+                    <label for=8>kick something</label>
+                </span>
+    
+            </div>
+
+            <div class="radio-column">
+                <span class="radio-item">
+                    <input type="radio" name="option" id=5>
+                    <label for=1>jump up</label>
+                </span>
+
+                <span class="radio-item">
+                    <input type="radio" name="option" id=6>
+                    <label for=3>point to something</label>
+                </span>
+
+                <span class="radio-item">
+                    <input type="radio" name="option" id=7>
+                    <label for=5>nod head/bow</label>
+                </span>
+
+                <span class="radio-item">
+                    <input type="radio" name="option" id=8>
+                    <label for=7>falling down</label>
+                </span>
+
+                <span class="radio-item">
+                    <input type="radio" name="option" id=9>
+                    <label for=9>arm circles</label>
+                </span>
+            </div>
+        </div>
+
+		<input type="button" value="NEXT" id="submitButton">
+        <br>
+        <br>
+        <div id="WARN"></div>
+        <div id="WARN2"></div>
+
+	</div>
+</div>
