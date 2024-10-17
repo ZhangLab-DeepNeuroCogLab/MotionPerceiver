@@ -9,10 +9,12 @@ Example videos in the BMP dataset are available at [link](https://drive.google.c
 Please download RGB videos from the official [RGB+D 120](https://rose1.ntu.edu.sg/dataset/actionRecognition/) website. We select 10 action classes from the [RGB+D 120](https://rose1.ntu.edu.sg/dataset/actionRecognition/) dataset and apply a 7-to-3 ratio for dividing the data into training and testing splits. 
 The details of the training and testing split are provided in [train_RGB.csv](Protocols/train_RGB.csv) and [test_RGB.csv](Protocols/test_RGB.csv).
 
-## Joint Videos 
+## Joint Videos and Sequential Position Actor (SP) Videos
 
-We apply [Alphapose](https://github.com/MVIG-SJTU/AlphaPose) to identify human body joints in the test set of our RGB videos. 
-The model trained on [Halpe 26 keypoints](https://github.com/Fang-Haoshu/Halpe-FullBody) is used to generate our Joint videos.
+We apply [Alphapose](https://github.com/MVIG-SJTU/AlphaPose) to generate our Joint and SP videos from the test set of our RGB videos. 
+The model trained on [Halpe 26 keypoints](https://github.com/Fang-Haoshu/Halpe-FullBody) is employed for this generation process..
+
+Before generating Joint and SP videos, we need to complete the following three steps:
 
 a) To remove the RGB background from the videos, we perform the following two steps:
 
@@ -21,7 +23,7 @@ a) To remove the RGB background from the videos, we perform the following two st
 parser.add_argument('--no_background', default=False, action='store_true')
 ```
 
-2. Modify line 260 in AlphaPose/scripts/demo_inference.py by replacing
+2. Modify the code on line 260 in AlphaPose/scripts/demo_inference.py by replacing
 ```
 writer.save(boxes, scores, ids, hm, cropped_boxes, orig_img, im_name)
 ```
@@ -74,9 +76,54 @@ c) If AlphaPose fails to detect key points in a specific RGB frame of the video,
 writer.save(None, None, None, None, None, orig_img, im_name)
 ```
 
-## Sequential Position Actor Videos (SP)
+### Joint Videos
+To produce videos with a varying number of joints, we undertake the following two steps:
 
-In the same way as Joint video generation, we also use [Halpe 26 keypoints](https://github.com/Fang-Haoshu/Halpe-FullBody) to generate SP videos. In this case, light points are positioned randomly between joints rather than on the joints themselves.
+1. Select joint indices from the set of 26 body keypoints detected by [Alphapose](https://github.com/MVIG-SJTU/AlphaPose) (refer to the body keypoints illustration in [Halpe](https://github.com/Fang-Haoshu/Halpe-FullBody) for more details). For example, in the J-6P condition, we select the following Joint indices and add this code after the code on line 27 (DEFAULT_FONT = cv2.FONT_HERSHEY_SIMPLEX) in AlphaPose/alphapose/utils/vis.py.
+
+```
+KP_26_2_6 =[0,9,10,19,15,16]
+```
+
+2. Modify the code on lines 472-482 in AlphaPose/alphapose/utils/vis.py by replacing
+
+```
+    for n in range(kp_scores.shape[0]):
+            if kp_scores[n] <= vis_thres[n]:
+                continue
+            cor_x, cor_y = int(kp_preds[n, 0]), int(kp_preds[n, 1])
+            part_line[n] = (int(cor_x), int(cor_y))
+            bg = img.copy()
+            if n < len(p_color):
+                if opt.tracking:
+                    cv2.circle(bg, (int(cor_x), int(cor_y)), 2, color, -1)
+                else:
+                    cv2.circle(bg, (int(cor_x), int(cor_y)), 2, p_color[n], -1)
+```
+with
+```
+ for n in range(kp_scores.shape[0]):
+            if kp_scores[n] <= vis_thres[n]:
+                continue
+            if n in KP_26_2_6:
+                cor_x, cor_y = int(kp_preds[n, 0]), int(kp_preds[n, 1])
+                part_line[n] = (int(cor_x), int(cor_y))
+                bg = img.copy()
+                if n < len(p_color):
+                    if opt.tracking:
+                        cv2.circle(bg, (int(cor_x), int(cor_y)), 5, (255,255,255), -1)
+                    else:
+                        cv2.circle(bg, (int(cor_x), int(cor_y)), 5, (255,255,255), -1)
+```
+
+### SP Videos 
+
+In SP videos, light points are positioned randomly between joints rather than on the joints themselves. To produce SP videos, we undertake the following two steps:
+
+
+
+
+
 
 # Five Properties
 
