@@ -6,18 +6,77 @@ Example videos in the BMP dataset are available at [link](https://drive.google.c
 
 ## RGB Videos 
 
-We select 10 action classes from the [RGB+D 120](https://rose1.ntu.edu.sg/dataset/actionRecognition/) dataset and apply a 7-to-3 ratio for dividing the data into training and testing splits. 
+Please download RGB videos from the official [RGB+D 120](https://rose1.ntu.edu.sg/dataset/actionRecognition/) website. We select 10 action classes from the [RGB+D 120](https://rose1.ntu.edu.sg/dataset/actionRecognition/) dataset and apply a 7-to-3 ratio for dividing the data into training and testing splits. 
 The details of the training and testing split are provided in [train_RGB.csv](Protocols/train_RGB.csv) and [test_RGB.csv](Protocols/test_RGB.csv).
 
 ## Joint Videos 
 
 We apply [Alphapose](https://github.com/MVIG-SJTU/AlphaPose) to identify human body joints in the test set of our RGB videos. 
 The model trained on [Halpe 26 keypoints](https://github.com/Fang-Haoshu/Halpe-FullBody) is used to generate our Joint videos.
-Note that skeletons between joints are not visible to humans or AI models (no limbs).
+
+a) To remove the RGB background from the videos, we perform the following two steps:
+
+1. Add an argument in AlphaPose/scripts/demo_inference.py
+```
+parser.add_argument('--no_background', default=False, action='store_true')
+```
+
+2. Modify line 260 in AlphaPose/scripts/demo_inference.py by replacing
+```
+writer.save(boxes, scores, ids, hm, cropped_boxes, orig_img, im_name)
+```
+with
+```
+if args.no_background:
+    black_img=np.zeros(orig_img.shape)
+    writer.save(boxes, scores, ids, hm, cropped_boxes, black_img, im_name)
+else:
+    writer.save(boxes, scores, ids, hm, cropped_boxes, orig_img, im_name)
+```
+
+b) To ensure that skeleton connections between joints remain invisible to both humans and AI models, we remove the limbs by deleting the code below in AlphaPose/alphapose/utils/vis.py (line 491 to line 519).
+
+```
+# Draw limbs
+        for i, (start_p, end_p) in enumerate(l_pair):
+            if start_p in part_line and end_p in part_line:
+                start_xy = part_line[start_p]
+                end_xy = part_line[end_p]
+                bg = img.copy()
+
+                X = (start_xy[0], end_xy[0])
+                Y = (start_xy[1], end_xy[1])
+                mX = np.mean(X)
+                mY = np.mean(Y)
+                length = ((Y[0] - Y[1]) ** 2 + (X[0] - X[1]) ** 2) ** 0.5
+                angle = math.degrees(math.atan2(Y[0] - Y[1], X[0] - X[1]))
+                stickwidth = (kp_scores[start_p] + kp_scores[end_p]) + 1
+                polygon = cv2.ellipse2Poly((int(mX), int(mY)), (int(length/2), int(stickwidth)), int(angle), 0, 360, 1)
+                if i < len(line_color):
+                    if opt.tracking:
+                        cv2.fillConvexPoly(bg, polygon, color)
+                    else:
+                        cv2.fillConvexPoly(bg, polygon, line_color[i])
+                else:
+                    cv2.line(bg, start_xy, end_xy, (255,255,255), 1)
+                if n < len(p_color):
+                    transparency = float(max(0, min(1, 0.5 * (kp_scores[start_p] + kp_scores[end_p])-0.1)))
+                else:
+                    transparency = float(max(0, min(1, (kp_scores[start_p] + kp_scores[end_p]))))
+
+                #transparency = float(max(0, min(1, 0.5 * (kp_scores[start_p] + kp_scores[end_p])-0.1)))
+                img = cv2.addWeighted(bg, transparency, img, 1 - transparency, 0)
+```
+
+c) If AlphaPose fails to detect key points in a specific RGB frame of the video, the frame should be deleted instead of retaining the original. This can be achieved by removing the following code in AlphaPose/scripts/demo_inference.py (line 231).
+
+```
+writer.save(None, None, None, None, None, orig_img, im_name)
+```
 
 ## Sequential Position Actor Videos (SP)
 
-We also use [Halpe 26 keypoints](https://github.com/Fang-Haoshu/Halpe-FullBody) to generate them. In this case, light points are positioned randomly between joints rather than on the joints themselves.
+In the same way as Joint video generation, we also use [Halpe 26 keypoints](https://github.com/Fang-Haoshu/Halpe-FullBody) to generate SP videos. In this case, light points are positioned randomly between joints rather than on the joints themselves.
 
 # Five Properties
 
