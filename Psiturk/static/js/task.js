@@ -54,7 +54,7 @@ var modality
 
 const csvUrls = [
 
-];  // Add the CSV file paths that include the paths to the video stimuli.
+];  // Add the CSV file paths that include the paths to the video stimuli and their associated labels.
 
 function VARExperiment_Instructions() {
 	example_stims = [
