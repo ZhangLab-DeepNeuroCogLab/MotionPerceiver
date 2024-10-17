@@ -15,9 +15,17 @@ This is a PyTorch implementation of the Motion Perceiver (MP) proposed by our pa
 
 ## Project Description
 
-Biological motion perception (BMP) refers to humans' ability to perceive and recognize the actions of living beings solely from their motion patterns, sometimes as minimal as those depicted on point-light displays. While humans excel at these tasks without any prior training, current AI models struggle with poor generalization performance. To close this research gap, we propose the Motion Perceiver (MP). MP solely relies on patch-level optical flows from video clips as inputs. During training, it learns prototypical flow snapshots through a competitive binding mechanism and integrates invariant motion representations to predict action labels for the given video. During inference, we evaluate the generalization ability of all AI models and humans on 62,656 video stimuli spanning 24 BMP conditions using point-light displays in neuroscience. Remarkably, MP outperforms all existing AI models with a maximum improvement of 29\% in top-1 action recognition accuracy on these conditions. Moreover, we benchmark all AI models in point-light displays of two standard video datasets in computer vision. MP also demonstrates superior performance in these cases. 
-More interestingly, via psychophysics experiments, we found that MP recognizes biological movements in a way that aligns with human behavioural data.
+Biological motion perception (BMP) refers to humans' ability to perceive and recognize the actions of living beings solely from their motion patterns, sometimes as minimal as those depicted on point-light displays. While humans excel at these tasks without any prior training, current AI models struggle with poor generalization performance. To close this research gap, we propose the Motion Perceiver (MP). MP solely relies on patch-level optical flows from video clips as inputs. During training, it learns prototypical flow snapshots through a competitive binding mechanism and integrates invariant motion representations to predict action labels for the given video. During inference, we evaluate the generalization ability of all AI models and humans on 62,656 video stimuli spanning 24 BMP conditions using point-light displays in neuroscience. Remarkably, MP outperforms all existing AI models with a maximum improvement of 29\% in top-1 action recognition accuracy on these conditions. Moreover, we benchmark all AI models in point-light displays of two standard video datasets in computer vision. MP also demonstrates superior performance in these cases. More interestingly, via psychophysics experiments, we found that MP recognizes biological movements in a way that aligns with human behavioural data.
 
+<br>
+<p align="center"><img align="center"  src="./Images/intro.png" alt="..." width="1920">
+</p>
+
+Some sample video stimuli are shown below.
+
+| [![RGB](Images/J-26P.gif)](Images/J-26P.gif)  | [![J-6P](Images/J-6P.gif)](Images/J-6P.gif) |[![SP-8P-1LT](Images/SP-8P-1LT.gif)](Images/SP-8P-1LT.gif)  |
+|:---:|:---:|:---:|
+| J-26P | J-6P | SP-8P-1LT | 
 
 ## Environment Setup
 
