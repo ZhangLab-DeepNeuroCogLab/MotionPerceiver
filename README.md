@@ -103,6 +103,10 @@ if you want to train or test our *Enhanced - Motion Perceiver (En-MP)* model, pl
 Our pretrained MP model on RGB videos of BMP dataset is available at [link](https://drive.google.com/file/d/1bxRu81lND-IkicwaNkVMDfVHNj-qFnxV/view?usp=sharing). Our pretrained En-MP model on RGB videos of BMP dataset is available at [link](https://drive.google.com/file/d/1Ty-ytZsFUKGTb1pNME0jb_aI-X6ZuB0o/view?usp=sharing).
 You can download the checkpoint and configure its path to TEST.CHECKPOINT_FILE_PATH for inference.
 
+## Human Psychophysics Experiments on Amazon Mechanical Turk 
+
+We have conducted a series of Mechanical Turk experiments using the [Psiturk](https://psiturk.org/) platform, which requires JavaScript, HTML, and Python 2.7. Please refer to [Put-In-Context](https://github.com/kreimanlab/Put-In-Context) and [doc](https://drive.google.com/open?id=1FblDG7OuWXVRfWo0Djb5eDiYgKqnk9wU) for detailed Psiturk instructions.
+
 ## Citation
 
 If you find our work useful in your research, please use the following BibTeX entry for citation.
