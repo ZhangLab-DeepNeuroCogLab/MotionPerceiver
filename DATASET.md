@@ -79,7 +79,7 @@ To generate videos with a varying number of joints, replace the list "KP_26_2_18
 
 ## Lifetime of visual information (LVI)
 
-When generating SP videos, change the variable "life_time" on line 487 of [SP/vis.py](AlphaPose/SP/vis.py) to control the lifetime of visual information.
+When generating SP videos, change the variable "life_time" on line 487 of [SP/vis.py](AlphaPose/SP/vis.py) to control the lifetime of visual information. Note when generating SP videos with a lifetime longer than 1 frame, ensure that the input RGB video used for AlphaPose has the same number of frames as the MP model expects (e.g., 32 frames in our case). If the number of frames does not match, downsampling the videos to 32 frames during MP model training or testing may inadvertently alter the intended lifetime of the SP videos.
 
 ## Invariance to camera views (ICV)
 
