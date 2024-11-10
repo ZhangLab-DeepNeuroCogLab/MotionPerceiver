@@ -6,12 +6,11 @@ This is a PyTorch implementation of the Motion Perceiver (MP) proposed by our pa
 
 <p align="left">
   <a href="http://arxiv.org/abs/2405.16493" target="_blank"><img src="http://img.shields.io/badge/Paper-PDF-red.svg"></a>
-</p>
-<!--   &nbsp
-  <a href="" target="_blank"><img src="https://img.shields.io/badge/Presentation-Video-blue.svg"></a>
   &nbsp
-  <a href="" target="_blank"><img src="https://img.shields.io/badge/Paper-Poster-green.svg"></a>
-</p> -->
+  <a href="https://youtu.be/bZz1UZa5QLc" target="_blank"><img src="https://img.shields.io/badge/Presentation-Video-blue.svg"></a>
+  &nbsp
+  <a href="https://drive.google.com/file/d/1IsL4R0DOY0GU7KJWaq8zqj1NQX4wFhBU/view?usp=sharing" target="_blank"><img src="https://img.shields.io/badge/Paper-Poster-green.svg"></a>
+</p> 
 
 ## Project Description
 
