@@ -121,10 +121,9 @@ Data from all participants in our human psychophysics experiments are available 
 If you find our work useful in your research, please use the following BibTeX entry for citation.
 
 ```
-@article{han2024flow,
+@inproceedings{hanflow,
   title={Flow Snapshot Neurons in Action: Deep Neural Networks Generalize to Biological Motion Perception},
   author={Han, Shuangpeng and Wang, Ziyu and Zhang, Mengmi},
-  journal={arXiv preprint arXiv:2405.16493},
-  year={2024}
+  booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems}
 }
 ```
